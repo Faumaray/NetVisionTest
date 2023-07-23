@@ -17,7 +17,7 @@ bool Polygon::isInside(const Point& p) const {
         const Point& vertexJ = vertices_[j];
 
         // Проверка если на границе
-        if ((p - vertexI).norm() < std::numeric_limits<double>::epsilon() || (p - vertexJ).norm() < std::numeric_limits<double>::epsilon()) {
+        if ((p - vertexI).norm() <= std::numeric_limits<double>::epsilon() || (p - vertexJ).norm() <= std::numeric_limits<double>::epsilon()) {
             return true;  
         }
 
@@ -49,11 +49,11 @@ int Polygon::getSegmentStatus(const Segment& segment) const {
         for (std::vector<Point>::size_type i = 0; i < n; i++) {
             Segment polySegment(vertices_[i], vertices_[(i + 1) % n]);
 
-            // Дополнительная проверка на границу
+            // Проверка на коллинеарность
             double cross1 = (segment.getP1() - polySegment.getP1()) ^ polySegment.vector();
             double cross2 = (segment.getP2() - polySegment.getP1()) ^ polySegment.vector();
             if (std::abs(cross1) < std::numeric_limits<double>::epsilon() && std::abs(cross2) < std::numeric_limits<double>::epsilon()) {
-                return 0;
+                return 2;
             }
 
             if (cross1 * cross2 < -std::numeric_limits<double>::epsilon()) {

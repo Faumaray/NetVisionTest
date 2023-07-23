@@ -27,10 +27,10 @@ double Segment::length() const {
     return abs();
 }
 
-double Segment::dot(const Segment& other) const {
+double Segment::operator*(const Segment& other) const {
     return vector() * other.vector();
 }
 
-double Segment::cross(const Segment& other) const {
+double Segment::operator^(const Segment& other) const {
     return vector() ^ other.vector();
 }

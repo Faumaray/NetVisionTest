@@ -100,6 +100,8 @@ TEST(PolygonTest, EmptyPolygon) {
     EXPECT_EQ(polygon.getSegmentStatus(segment2), 3);
 }
 
+
+// INFO: особенный случай т.к. все это можно определить и как внутри и как частичное пересечение
 TEST(PolygonTest, DegeneratePolygon) {
     std::vector<Point> vertices = {
         {0.0, 0.0},
@@ -114,7 +116,7 @@ TEST(PolygonTest, DegeneratePolygon) {
     Segment segment2({0.0, 0.0}, {4.0, 0.0});
     Segment segment3({3.0, 0.0}, {6.0, 0.0});
 
-    EXPECT_EQ(polygon.getSegmentStatus(segment1), 0); // Внутри
+    EXPECT_EQ(polygon.getSegmentStatus(segment1), 2); // Частично
     EXPECT_EQ(polygon.getSegmentStatus(segment2), 0); // Внутри
-    EXPECT_EQ(polygon.getSegmentStatus(segment3), 2); // Частично\Внутри т.к. граница может быть ошибка
+    EXPECT_EQ(polygon.getSegmentStatus(segment3), 2); // Частично
 }

@@ -8,11 +8,11 @@ public:
     const Point& getP2() const;
 
     Point vector() const;
+    double operator*(const Segment& other) const; // Dot product
+    double operator^(const Segment& other) const; // Cross product
     double norm() const;
     double abs() const;
     double length() const;
-    double dot(const Segment& other) const;
-    double cross(const Segment& other) const;
 
 private:
     Point p1_;
