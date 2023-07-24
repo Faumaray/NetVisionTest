@@ -22,9 +22,14 @@ target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 target_include_directories(${PROJECT_NAME}
                            PRIVATE "${PROJECT_SOURCE_DIR}/include")
 
-find_package(GTest REQUIRED)
+if(${BUILD_TESTS})
 
-add_subdirectory(tests)
+  include(CTest)
+  find_package(GTest REQUIRED)
+
+  add_subdirectory(tests)
+
+endif()
 
 write_basic_package_version_file(
   ${PROJECT_NAME}ConfigVersion.cmake

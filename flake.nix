@@ -17,7 +17,7 @@
           cmake-language-server
           cmake
           ninja
-          clang-tools
+          clang-tools_16
           gtest
           gtest.dev
         ];
