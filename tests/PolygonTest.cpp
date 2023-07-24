@@ -101,7 +101,6 @@ TEST(PolygonTest, EmptyPolygon) {
 }
 
 
-// INFO: особенный случай т.к. все это можно определить и как внутри и как частичное пересечение
 TEST(PolygonTest, DegeneratePolygon) {
     std::vector<Point> vertices = {
         {0.0, 0.0},
@@ -116,13 +115,12 @@ TEST(PolygonTest, DegeneratePolygon) {
     Segment segment2({0.0, 0.0}, {4.0, 0.0});
     Segment segment3({3.0, 0.0}, {6.0, 0.0});
 
-    EXPECT_EQ(polygon.getSegmentStatus(segment1), 0); // Частично
+    EXPECT_EQ(polygon.getSegmentStatus(segment1), 0); // Внутри
     EXPECT_EQ(polygon.getSegmentStatus(segment2), 0); // Внутри
-    EXPECT_EQ(polygon.getSegmentStatus(segment3), 0); // Частично
+    EXPECT_EQ(polygon.getSegmentStatus(segment3), 0); // Внутри
 }
 
 
-// INFO: особенный случай т.к. все это можно определить и как внутри и как частичное пересечение
 TEST(PolygonTest, CollinPolygon) {
     std::vector<Point> vertices = {
         {0.0, 3.0},
@@ -142,8 +140,8 @@ TEST(PolygonTest, CollinPolygon) {
     Segment segment5({-1.0, 4.2}, {4.0, 1.3});
 
     EXPECT_EQ(polygon.getSegmentStatus(segment1), 1); // Частично
-    EXPECT_EQ(polygon.getSegmentStatus(segment2), 2); // Внутри
-    EXPECT_EQ(polygon.getSegmentStatus(segment3), 2); // Частично
+    EXPECT_EQ(polygon.getSegmentStatus(segment2), 2); // Пересечение
+    EXPECT_EQ(polygon.getSegmentStatus(segment3), 2); // Пересечение
     EXPECT_EQ(polygon.getSegmentStatus(segment4), 1); // Частично
-    EXPECT_EQ(polygon.getSegmentStatus(segment5), 3); // Частично
+    EXPECT_EQ(polygon.getSegmentStatus(segment5), 3); // Не имеет отношения
 }
