@@ -8,17 +8,17 @@
 
 ### Dependencies
 
-* GTest
+* GTest only for tests via -DBUILD_TESTS=true
 
 ### Installing Dependencies
 
 #### Ubuntu
 ```
-sudo apt-get install libgtest-dev
+sudo apt-get install libgtest-dev cmake ninja-build
 ```
 #### ArchLinux
 ```
-sudo pacman -S gtest
+sudo pacman -S gtest cmake ninja
 ```
 #### Nix Flake (Recommended)
 ```
